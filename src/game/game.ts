@@ -11,7 +11,7 @@ export interface Game {
   gameState: GameState
 }
 
-interface Board {
+export interface Board {
   cells: GameTile[]
 }
 
@@ -19,9 +19,10 @@ const createBoard = (): Board => ({ cells: Array(9).fill('') });
 const createGameState = (): GameState => ({ isEnded: false, winner: '' });
 export const createGame = (): Game => ({ board: createBoard(), gameState: createGameState(), turnPlayer: 'x' });
 
-const evaluateIsEnded = (board: Board): boolean => board.cells.every(cell => cell !== '');
+export const evaluatePossiblePositions = (board: Board): number[] => Array(9).fill(0).map((_, i) => i).filter(position => board.cells[position] === '');
+export const evaluateIsEnded = (board: Board): boolean => board.cells.every(cell => cell !== '');
 
-const evaluateWinner = (board: Board): GameTile => {
+export const evaluateWinner = (board: Board): GameTile => {
   const lines = [
     [0,1,2], [3,4,5], [6,7,8],
     [0,3,6], [1,4,7], [2,5,8],
