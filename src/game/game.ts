@@ -1,11 +1,11 @@
-type GameTile = 'x' | 'o' | ''
+export type GameTile = 'x' | 'o' | ''
 
 interface GameState {
   isEnded: boolean
   winner: GameTile
 }
 
-interface Game {
+export interface Game {
   board: Board
   turnPlayer: GameTile
   gameState: GameState
